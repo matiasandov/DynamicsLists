@@ -6,9 +6,68 @@
 //
 
 #include <iostream>
+#include "Node.hpp"
+#include "LinkedList.hpp"
+using namespace std;
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+    /* Uso de constructor predeterminado Node<T>() */
+    Node<int> n1;
+    std::cout << n1 << std::endl;
+    
+    /* Uso de constructor con parámetros Node<T>(T) */
+    Node<float> n2(3.14);
+    std::cout << n2 << std::endl;
+    
+    /* Uso de constructor copia Node<T>(Node<T> &) */
+    Node<int> n3 = n1;
+    std::cout << n3 << std::endl;
+    
+    /* Crear un nodo con memoria dinámica */
+    Node<int> * nodeptr = new Node<int>(10);
+    std::cout << *nodeptr << std::endl;
+    
+    /* Liberar la memoria ocupada por el nodo */
+    delete nodeptr;
+    
+    
+    /* Crear una lista */
+    LinkedList<int> * list = new LinkedList<int>();
+    
+    /* Determinar si la lista está vacía */
+    std::cout << (list->empty() ? "La lista está vacía" : "La lista tiene elementos") << std::endl;
+    
+    /* Insertar elementos en la lista */
+    list->insert_front(1);
+    list->insert_front(2);
+    list->insert_front(3);
+    
+    /* Mostrar el contenido de la lista */
+    cout << *list << endl;
+    
+    /* Obtener tamaño de la lista */
+    std::cout << "Tamaño de la lista: " << list->size() << " elementos" << std::endl;
+    
+   /* Eliminar un elemento */
+    //Node<int> * node = list->remove_front();
+    
+    //std::cout << "El nodo eliminado es: " << *node << std::endl;
+    
+    /* Liberar la memoria del nodo eliminado */
+    //delete node;
+    
+    
+    /* Eliminar un elemento */
+    //node = list->remove_front();
+    
+    //std::cout << "El nodo eliminado es: " << *node << std::endl;
+    
+    // Liberar la memoria del nodo eliminado
+    //delete node;
+    
+    list->clear();
+    //Determinar si la lista está vacía
+    cout << (list->empty() ? "La lista está vacíaaaaaaaaaaaa" : "La lista tiene elementos") << endl;
+    
+    
 }
