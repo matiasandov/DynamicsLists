@@ -78,6 +78,7 @@ public:
     virtual void clear();
     void SortedInsert (Node<T> * );
     void RemoveDuplicates ();
+    void reverse();
 };
 
 
@@ -248,7 +249,8 @@ void LinkedList<T>::SortedInsert(Node<T> * node){
             //el actual se avanza un lugar
             actual = actual->getNext();
         }
-        //es decir que se deba poner en el inicio el nodo, ya que por default no se cambio nullpt para prev
+        
+        //se pondrá en el inicio el nodo si la lista esta vacia, ya que  no se cambio nullpt para prev
         if (prev == nullptr) {
             insert_front(node);
         }
@@ -273,8 +275,6 @@ void LinkedList<T>::RemoveDuplicates(){
     
     //primero para asegurarnos que la lista no esté vacia
     if(!this -> empty()){
-        
-        
         
         //temporal para guardar posicion previa
         Node<T> * prev = nullptr;
@@ -305,10 +305,40 @@ void LinkedList<T>::RemoveDuplicates(){
                 
             }
         }
-        
-            
-        
     }//IF NO VACIO
         
+}
+
+template <class T>
+void LinkedList<T>::reverse(){
+    /*se trabajará con un ciclo de 3 nodos a la vez, donde *actual será el ultimo de los 3, para que en la siguiente iteración se encuentre de nuevo a la mitad*/
+    
+    //temporal para guardar posicion previa
+    Node<T> * prev = nullptr;
+    
+    //temporal que ira avanzado en la lista
+    Node<T> * actual = _first;
+    
+    //temporal para gurdar el sig al actual
+    Node<T> * sig = nullptr;
+    
+    
+    while (actual != nullptr ) {
+        //sig señala al next de actual
+        sig = actual->getNext();
+        
+        //aqui es donde empieza el cambio, prev tambien señalará al next de actual
+        actual->setNext(prev);
+        
+        //con esto prev se recorre un espacio adelante
+        prev = actual;
+        
+        //el actual ahora queda de nuevo a la mitad de los 3 y sig ya no se mueve
+        actual = sig;
+        
+    }
+    _first = prev;
+    
+    
 }
 #endif /* LinkedList_hpp */

@@ -48,10 +48,14 @@ int main(int argc, const char * argv[]) {
     /* Mostrar el contenido de la lista */
     cout << *list << endl;
     
-    cout << list->count(4);
-    /* Obtener tamaño de la lista */
-    std::cout << "Tamaño de la lista: " << list->size() << " elementos" << std::endl;
+    /* Mostrar el valor del parametro en la lista */
+    cout << "numero de veces que se encuentra el 4 en la lista: " << endl;
+    cout << list->count(4) <<endl;
     
+    
+    list->reverse();
+    
+    cout << "\n en reversa \n" << *list;
  
     list->SortedInsert(new Node<int>(3));
     
@@ -60,7 +64,7 @@ int main(int argc, const char * argv[]) {
     list->insert_front(1);
     list->insert_front(1);
     
-    cout << "\n se borraran 5 y 4 ";
+    cout << "\n se borraran los 1 ";
     list->RemoveDuplicates();
     
     
