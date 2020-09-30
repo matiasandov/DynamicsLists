@@ -215,7 +215,7 @@ void LinkedList<T>::clear(){
 
 //variable temporal para guardar nodo que se quiere borrar
 Node<T> *old = nullptr;
-    //habia puestowhile (old != nullptr  ) y despues un if!this -> empty(), lo cual es hacer lo mismo dos veces, que es como negarlo creo
+    
     //mientras la lista (direccion) no este vacía
     while (!this -> empty()) {
         //se guarda referencia lo que hay ahorita en el primer elemento, con esto se desvincula de la lista
@@ -260,6 +260,7 @@ void LinkedList<T>::SortedInsert(Node<T> * node){
         node->setNext( prev->getNext() );
             //se pone al node después del previo al actual
         prev->setNext (node);
+        ++this->_size;
             
             cout <<"\n elemento : " << *node << " colocado \n";
         }
@@ -302,6 +303,7 @@ void LinkedList<T>::RemoveDuplicates(){
                 actual = actual->getNext();
                 prev->setNext(nullptr);
                 cout << " \n numero repetido eliminado ";
+                --this->_size;
                 
             }
         }
