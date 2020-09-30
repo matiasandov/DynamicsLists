@@ -77,7 +77,7 @@ public:
     /* Eliminar todos los elementos de la lista y liberar la memoria ocupada */
     virtual void clear();
     void SortedInsert (Node<T> * );
-    
+    void RemoveDuplicates ();
 };
 
 
@@ -137,9 +137,11 @@ void LinkedList<T>::insert_front( Node<T> * node){
     if(this -> empty() ){
         this -> _first = node;
     }
-    //si no vacia se poner el viejo elemento al frente apuntando al nuevo elemento
+    //si no vacia se poner el nuevo elemento al frente apuntando al viejo elemento
     else{
+        //se apunta al siguiente
         node->setNext(this-> _first);
+        //se pone en primera posicion
         this-> _first = node;
         //se debe actualizar size
         ++this->_size;
@@ -208,11 +210,7 @@ int LinkedList<T>::count(const T & value){
 
 template <class T>
 void LinkedList<T>::clear(){
-//tiene que haber una variable temporal first para no perder el apuntador y despues ya se borra
-//el primer apuntador debe pasar al del segundo elemento
-//se tiene que liberar la memoria del antiguo primer elemento
 
-//tenemos que checar si el primero esta vacio porque para ver si no hay nada que borrar
 
 //variable temporal para guardar nodo que se quiere borrar
 Node<T> *old = nullptr;
@@ -236,25 +234,43 @@ template <class T>
 void LinkedList<T>::SortedInsert(Node<T> * node){
     //primero para asegurarnos que la lista no esté vacia
     if(!this -> empty()){
-        //nodo siguiente, el cual irá cambiando conforme se avance
-        Node<T> *sig = node->getNext();
-        while (node != nullptr ) {
-            if (node->getInfo() < sig->getInfo() ) {
-                //node avanza un lugar
-                node = node->getNext();
-                //sig node avanza un lugar
-                sig = sig->getNext();
-                cout << "\n avanzado ";
-            }
-            if(node->getInfo() >= sig->getInfo() ){
-                cout << "\n ya se guardo ";
-            }
         
+        //temporal que ira avanzado en la lista
+        Node<T> * actual = _first;
+        
+        //temporal para guardar posicion previa
+        Node<T> * prev = nullptr;
+
+        //mientras no se llegue al final y el actual no sea mayor al nodo buscado
+        while (actual != nullptr &&  (actual->getInfo() < node->getInfo())) {
+            //el actual sera el nuevo previo
+            prev = actual;
+            //el actual se avanza un lugar
+            actual = actual->getNext();
         }
+        //es decir que se deba poner en el inicio el nodo, ya que por default no se cambio nullpt para prev
+        if (prev == nullptr) {
+            insert_front(node);
+        }
+        //si el nodo es igual o mayor al valor info actual
+        else {
+            //se pone al actual despues del node porque puede ser igual o mayor que este
+        node->setNext( prev->getNext() );
+            //se pone al node después del previo al actual
+        prev->setNext (node);
+            
+            cout <<"\n elemento : " << *node << " colocado \n";
+        }
+            
         
-    }else{
-        insert_front(node);
-    }
+    }//IF NO VACIO
+        
+ 
 }
 
+template <class T>
+void LinkedList<T>::RemoveDuplicates(){
+    
+        
+}
 #endif /* LinkedList_hpp */

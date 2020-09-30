@@ -38,36 +38,23 @@ int main(int argc, const char * argv[]) {
     std::cout << (list->empty() ? "La lista está vacía" : "La lista tiene elementos") << std::endl;
     
     /* Insertar elementos en la lista */
-    list->insert_front(1);
+    list->insert_front(7);
+    list->insert_front(6);
+    list->insert_front(5);
+    list->insert_front(4);
     list->insert_front(2);
-    list->insert_front(3);
+    list->insert_front(1);
     
     /* Mostrar el contenido de la lista */
     cout << *list << endl;
     
+    cout << list->count(4);
     /* Obtener tamaño de la lista */
     std::cout << "Tamaño de la lista: " << list->size() << " elementos" << std::endl;
     
-   /* Eliminar un elemento */
-    //Node<int> * node = list->remove_front();
-    
-    //std::cout << "El nodo eliminado es: " << *node << std::endl;
-    
-    /* Liberar la memoria del nodo eliminado */
-    //delete node;
-    
-    
-    /* Eliminar un elemento */
-    //node = list->remove_front();
-    
-    //std::cout << "El nodo eliminado es: " << *node << std::endl;
-    
-    // Liberar la memoria del nodo eliminado
-    //delete node;
+ 
+    list->SortedInsert(new Node<int>(3));
     
     list->clear();
-    //Determinar si la lista está vacía
-    cout << (list->empty() ? "La lista está vacíaaaaaaaaaaaa" : "La lista tiene elementos") << endl;
-    
     
 }
