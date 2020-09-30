@@ -271,6 +271,44 @@ void LinkedList<T>::SortedInsert(Node<T> * node){
 template <class T>
 void LinkedList<T>::RemoveDuplicates(){
     
+    //primero para asegurarnos que la lista no esté vacia
+    if(!this -> empty()){
+        
+        
+        
+        //temporal para guardar posicion previa
+        Node<T> * prev = nullptr;
+        
+        //temporal que ira avanzado en la lista
+        Node<T> * actual = _first;
+        
+        //se pone prev en primera posicion
+        prev = actual;
+        //se pone actual en segunda
+        actual = actual->getNext();
+        
+        //mientras no se llegue al final y mientras el nodo actual y el siguiente no tengan valores iguales, se recorrera la lista
+        while (actual != nullptr ){
+            
+            if(prev->getInfo() != actual->getInfo() )  {
+                //el actual sera el nuevo previo
+                prev = actual;
+                //el actual se avanza un lugar
+                actual = actual->getNext();
+                
+            }
+            else{
+                //se podría decir que se avanza 2 lugares al previo y el previo no se actualiza, porque el que sigue después del previo se borrará
+                actual = actual->getNext();
+                prev->setNext(nullptr);
+                cout << " \n numero repetido eliminado ";
+                
+            }
+        }
+        
+            
+        
+    }//IF NO VACIO
         
 }
 #endif /* LinkedList_hpp */

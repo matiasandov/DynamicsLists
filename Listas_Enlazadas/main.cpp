@@ -55,6 +55,15 @@ int main(int argc, const char * argv[]) {
  
     list->SortedInsert(new Node<int>(3));
     
+    list->insert_front(1);
+    list->insert_front(1);
+    list->insert_front(1);
+    list->insert_front(1);
+    
+    cout << "\n se borraran 5 y 4 ";
+    list->RemoveDuplicates();
+    
+    
     list->clear();
     
 }
