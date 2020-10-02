@@ -214,21 +214,28 @@ void LinkedList<T>::clear(){
 
 
 //variable temporal para guardar nodo que se quiere borrar
-Node<T> *old = nullptr;
+//se guarda referencia lo que hay ahorita en el primer elemento, con esto se desvincula de la lista
+    Node<T> *old =  this->_first;
     
     //mientras la lista (direccion) no este vacía
     while (!this -> empty()) {
-        //se guarda referencia lo que hay ahorita en el primer elemento, con esto se desvincula de la lista
-        old = this->_first;
+        
         //se pone first a apuntar a la siguiente posición
         this-> _first = old->getNext();
-        //apuntas a direccion vacia y desligas de la lista el elemento old
-        old -> setNext(nullptr);
+        //liberar memoria del nodo
         
-        //se debe actualizar size
-        --this->_size;
+        delete old;
+        
+        //se crea un nuevo old para el nuevo ciclo
+        old = this -> _first;
         
     }
+    //se debe actualizar size
+    this->_size = 0;
+    
+    //al final del ciclo ya no puedes hacer delete al ultimo old, asi que lo borras así
+    this-> _first = nullptr;
+    
 }
 
 template <class T>
