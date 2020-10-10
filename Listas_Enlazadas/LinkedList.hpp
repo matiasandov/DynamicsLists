@@ -191,11 +191,12 @@ std::ostream & operator <<(std::ostream & os, const LinkedList<T> & list)
     return os;
 }
 
+//Complejidad lineal
 template <class T>
 int LinkedList<T>::count(const T & value){
     int cont = 0;
  
-    /* Obtener el primer elemento de la lista */
+    /* Obtener referencia el primer elemento de la lista */
     Node<T> * tmp = this->_first;
     
     /* Desplazarse mientras tmp != nullptr */
@@ -209,6 +210,7 @@ int LinkedList<T>::count(const T & value){
     
 }
 
+//Complejidad lineal
 template <class T>
 void LinkedList<T>::clear(){
 
