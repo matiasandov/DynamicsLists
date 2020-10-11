@@ -40,7 +40,7 @@ private:
     using LinkedList<T>::insert_back;
     using LinkedList<T>::insert_front;
     using LinkedList<T>::insert;
-};
+}; 
 
 
 /* Insertar un nodo en la posición que le corresponde

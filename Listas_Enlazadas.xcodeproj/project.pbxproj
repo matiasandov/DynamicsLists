@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B25520452532321800C38298 /* SortedLists.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B25520432532321800C38298 /* SortedLists.cpp */; };
 		B2591D4D251E21AA00C3C8EF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2591D4C251E21AA00C3C8EF /* main.cpp */; };
-		B2591D5A251E2B8F00C3C8EF /* LinkedList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2591D58251E2B8F00C3C8EF /* LinkedList.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,12 +23,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B25520432532321800C38298 /* SortedLists.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SortedLists.cpp; sourceTree = "<group>"; };
 		B25520442532321800C38298 /* SortedLists.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SortedLists.hpp; sourceTree = "<group>"; };
 		B2591D49251E21AA00C3C8EF /* Listas_Enlazadas */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Listas_Enlazadas; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2591D4C251E21AA00C3C8EF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B2591D55251E21DB00C3C8EF /* Node.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Node.hpp; sourceTree = "<group>"; };
-		B2591D58251E2B8F00C3C8EF /* LinkedList.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LinkedList.cpp; sourceTree = "<group>"; };
 		B2591D59251E2B8F00C3C8EF /* LinkedList.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LinkedList.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,8 +62,6 @@
 			children = (
 				B2591D4C251E21AA00C3C8EF /* main.cpp */,
 				B2591D55251E21DB00C3C8EF /* Node.hpp */,
-				B2591D58251E2B8F00C3C8EF /* LinkedList.cpp */,
-				B25520432532321800C38298 /* SortedLists.cpp */,
 				B25520442532321800C38298 /* SortedLists.hpp */,
 				B2591D59251E2B8F00C3C8EF /* LinkedList.hpp */,
 			);
@@ -131,8 +125,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2591D4D251E21AA00C3C8EF /* main.cpp in Sources */,
-				B25520452532321800C38298 /* SortedLists.cpp in Sources */,
-				B2591D5A251E2B8F00C3C8EF /* LinkedList.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

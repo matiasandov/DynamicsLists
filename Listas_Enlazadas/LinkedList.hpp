@@ -14,11 +14,32 @@
 
 template <class T>
 class LinkedList{
-private:
+protected:
     //apuntador a primer elemento siempre y el nullptr es apra saber si esta vacia creo
     Node<T> * _first = nullptr;
     //se ira actulizando
     int _size = 0;
+    
+
+    //sobrecarga de operadores para hacer un for
+    /* Clase Iterator */
+    class Iterator {
+        const LinkedList<T> * _data;
+        int _position;
+        
+    public:
+        /*aqui ya se está haciendo el constructor de la clase indicando que estará compuesto de
+         -el objeto node
+         -la posicion de parada
+         */
+        Iterator( const LinkedList<T> * _adata, int _aposition)
+        : _data(_adata), _position(_aposition) {}
+        
+        Node<T> operator *() const { return *(_data->at(_position)); }
+        const  Iterator & operator ++() { ++_position; return *this; }
+        bool operator != (const Iterator & it) const { return _position != it._position; }
+    };// todo lo de arriba es una clase protegida dentro de otra clase para heredar una clase iterador que finalmente será un for
+    
 public:
     LinkedList(){};
     //destrcutor que llamara los destrcutores de sus nodes
@@ -65,12 +86,26 @@ public:
        /* Obtener la posición de un nodo */
        int at(Node<T> *) const;
 
+    
+    /* Obtener la posición de un nodo */
+       virtual int index(Node<T> *) const;
+       
+       /* Obtener la posición de un valor */
+       virtual int index(const T &) const;
+    
+    
        /* Mostrar el contenido de la lista */
     //es importante saber que aqui debes poner Tn para que no se confunda con T porque es una funcion generica FRIEND
-       template <typename Tn>
-       friend std::ostream & operator <<(std::ostream &, const LinkedList<Tn> &);
+    template <typename Tn>
+    friend std::ostream & operator <<(std::ostream &, const LinkedList<Tn> &);
     
     
+    /* Funciones que utiliza el foreach */
+    Iterator begin() const { return { this, 0}; }
+    Iterator end() const { return {this, _size }; }
+       
+    /* Sobrecarga del operador índice */
+    Node<T> * operator [](const int);
     
     //ejercicio
     int count(const T &);
@@ -79,7 +114,11 @@ public:
     void SortedInsert (Node<T> * );
     void RemoveDuplicates ();
     void reverse();
-};
+    
+    
+    
+    
+};//__________________________________________________________________
 
 
 template <class T>
@@ -352,4 +391,85 @@ void LinkedList<T>::reverse(){
     
     
 }
+    
+template  <class T>
+Node<T> * LinkedList<T>::at(int position) const
+{
+        /* Cuando la lista está vacía o position es inválida */
+        if (this->empty() || position < 0 || position >= this->_size) {
+            return nullptr;
+        }
+        
+        /*  Buscar el nodo que se encuentra en position */
+        int pos = 0;
+        
+        /* Obtener una referencia al primer nodo */
+        Node<T> * tmp = this->_first;
+        
+        /* Desplazarse por la lista hasta encontrar el nodo */
+        while (tmp != nullptr && pos++ < position)
+        {
+            tmp = tmp->getNext();
+        }
+        
+        return tmp;
+    }
+
+    /* Obtener la posición de un nodo
+     * Complejidad: O(n)
+     */
+    template  <class T>
+    int LinkedList<T>::index(Node<T> * node) const
+    {
+        /* Cuando la lista está vacía o node es nullptr */
+        if (this->empty() || node == nullptr) {
+            return -1;
+        }
+        
+        /* Buscar el valor del nodo y regresar su posición */
+        return this->index( node->getInfo() );
+    }
+
+    /* Obtener la posición de un valor
+     * Complejidad: O(n)
+     */
+    template  <class T>
+    int LinkedList<T>::index(const T & value) const
+    {
+        /* Cuando la lista está vacía */
+        if ( this->empty() ) {
+            return -1;
+        }
+        
+        /* Buscar value y regresar su posición */
+        int pos = 0;
+        
+        /* Obtener una referencia al primer nodo */
+        Node<T> * tmp = this->_first;
+        
+        /* Desplazarse por la lista hasta encontrar el value */
+        while (tmp != nullptr && tmp->getInfo() != value)
+        {
+            tmp = tmp->getNext();
+            ++pos;
+        }
+        
+        /* Si el value no se encuentra en la lista */
+        if (pos == this->_size) { return -1; }
+        
+        return pos;
+    }
+    
+/* Obtener el elemento de una posición
+ * Complejidad: O(n)
+ */
+template  <class T>
+Node<T> * LinkedList<T>::operator [](const int position)
+{
+    return this->at(position);
+}
+
+
+    
+
 #endif /* LinkedList_hpp */
